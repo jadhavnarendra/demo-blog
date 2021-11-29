@@ -1,0 +1,121 @@
+<html>
+<title>Home</title>
+<head>
+<style>
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-primary {
+
+    background-color: #b71f0e !important;
+}
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 2.5rem !important;
+}
+ul.navbar-nav.me-auto {
+    margin-left: 8%
+}
+.navbar-dark .navbar-nav .nav-link {
+    font-size: 18px;
+    font-weight: bold;
+}
+.button {
+    margin-right: 30px;
+}
+.button1 {
+    margin-right: 2%
+}
+.nav-link {
+    color: #fff !important;
+}
+.main {
+    margin-top: 60px;
+}
+</style>
+<%= stylesheet_link_tag "https://bootswatch.com/5/flatly/bootstrap.min.css" %>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Course</a>
+        </li>
+        
+      </ul>
+      
+        
+      <% if user_signed_in? %>
+         Logged in as <strong><%= current_user.email %></strong>.
+       
+  <% else %>
+     <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link btn btn-success my-2 my-sm-0 button1'  %>
+     <%= link_to "Login", new_user_session_path, :class => 'navbar-link btn btn-success my-2 my-sm-0 button'  %>
+<% end %>
+
+
+
+      
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container main">
+
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  #<div class="actions">
+    #<%= f.submit "Sign up" %>
+
+
+    <%= link_to "details", home_details_path %>
+
+      
+
+    
+
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
+
+
+</body>
+
+</head>
+</html>
